@@ -1,0 +1,108 @@
+1.1 Networks, packets and protocols
+
+A computer network consists of host and routers
+Host are computers that run apps - ex Web browser 
+Routers are machines who job is to relay, or forward information from once communication to another
+
+Routers are important because connecting every host is impractical 
+A few hosts connect to one router, which connects to a new one, and then set up a new network. 
+
+Packets are sequence of byte interpreted by programs/
+Packet: contains control infos for the network and sometimes include user data. 
+Ex: using to indentify packet's destination
+
+Protocol: Agreement about how packets exchanged by communicating programs and what they mean.
+A Protocol tells how packets are structured. 
+Ex: The Hypertext Transfer Protocol(HTTP) 
+
+Implementing a useful network requires solving numerous problems
+TCP/IP is one of the solution for that 
+Network could be understand as network that are using TCP/IP protocol suite
+The main protocols in the TCP/IP protocol is: Internet Protocol, Transmission Control Protocol
+
+In TCP/IP, the bottom layer consists of underlying communication channels 
+These channels are used by the network layer, deals with the problems of packets transferring
+The single network layer protocol in the TCP/IP suite is the Internet Protocol
+
+The Internet Protocol provides a datagram service.
+Each IP packet has to contain the address of its destination. 
+IP is only a best-effort protocol: It attempts to deliver each packet,
+but it can be lose, reorder, or duplicate packets in the network.|
+
+The layer above IP is called the transport layer. It provides two choices: TCP and UDP
+Have one fuction in common: Addressing.
+Provides different kinds of transport, which are used by appication protocols. 
+Both TCP and UDP use addresses, called port numbers, to identify applications within hosts.
+
+TCP is designed for prevention against losses in the host-to-host channel provide by IP.
+Using TCP is similar in many ways to file input/output(I/O)
+UDP, on the other hand, extends the IP data-gram service so it works between applications instead of between hosts.
+
+
+1.2 About Addreses
+
+Before a program can communicate, it must tell the network to identify the other program.
+It takes two pieces to identify a particular program: an Internet Addreses and a port number.
+
+Internet address are binary numbers.
+They come in two flavors, IPv4 and IPv6.
+IPv4 are 32 bits long, while IPv6 are 128 bits long.
+Ipv4 are written as a group of four decimal numbers seperated by periods,
+this is called the dotted-quad notation.
+The sixteen bytes of an IPv6 address, on the other hand, are represented as groups of hexidecimal digits, seperated by colons.
+
+Each address refers to the connection between a host and an underlyingcommunication channel, in other words, a network interface
+A host may have serveral interface.
+An IA identifies a host as well as its connection to the network
+
+The port number of TCP/UDP is always interpreted relative to an Internet address. 
+Port numbers are 16-bit unsigned binary numbers, so each one is in the range 1 to 65,535.
+
+In each ver of IP, certain special-purpose addresses are defined. One of these that is worth knowing is the loopback address
+Another group of IPv4 addresses reserved for a special purpose includes those reserved for "private use".
+This includes IPv4 addresseswith 10 or 192.168
+These address were originally designated for use in private networks that are not part of a global Internet.
+Today they are often use in house and small offices.
+It maps (private address, port) pairs in packets on one of its interfaces to (public address, port) pairs on the other interface.
+
+A related class contains the link-local, or "autoconfig" addresses. For IPv4, such addresses begin with 169.254. |
+For IPv6, it starts with FE8.
+Such addresses can only be used for communication between hosts connected to the same network, routers will not forward them.
+
+Regular IP addresses refer to a single destination, multicast address
+potentially refer to an arbitary number of destinations.
+IPv4 multicast addresses have a first number in the range 224 - 239
+Ipv6 starts with FF.
+
+1.3 About Names 
+Hosts are being accustomed to referring by name. 
+Use of names instead of addresses is a convenience feature that is independent of the basic service 
+provided by TCP/IP
+Name-resolution services can access information from a wide variety of sources.
+Two of the primary sources are DNS and local configuration databases.
+DNS is a distributed database that maps domain names to Internet addresses and other infos.
+The DNS protocol allow hosts connected to the Internet to retrieve infos from the database.
+
+1.4 Clients and Servers
+Cient progarm initates communication. while the server waits passively for and then responds to clients that contact it.
+Today, both compose the application. 
+It describes the situation where server makes a particular capability - ex, a database service - available to any client that is able to communicate with it. 
+
+A program is acting as a client or server determines the genral form of its use of the sockets API. 
+With the sockets API, the server can learn the client's address informationwhen it receives the initial communicationfrom the client.
+
+The client find out a server's IP address and port number
+using name-resolution services or from the URL.
+
+Finding a port is not difficult, but the client must be able to learn what it is
+port number 21 has been assigned to the FTP
+
+1.5 What Is A Socket ?
+
+A socket is an abstraction through with an application may send and receive data.
+It allows an application to plug into the network and communicate with other apps.
+
+The main types of sockets in TCP/IP are stream sockets and datagram sockets.
+Stream sockets use TCP provide reliable byte-stream service.
+UDP provide a best-effort datagram service
+A TCP/IP socket is uniquely identified by an Internet address, an end-to-end protocol(TCP or UDP), and a port number.
